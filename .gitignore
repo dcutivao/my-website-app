@@ -22,3 +22,7 @@ crash.log
 .DS_Store
 Thumbs.db
 
+#prueba para el repo
+.web/
+.modules/
+
