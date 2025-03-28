@@ -8,7 +8,7 @@ variable "buckets" {
     versioning = bool
   }))
   default = {
-    "web-origen" = { versioning = true }
+    #"web-origen" = { versioning = true }
     #"artefact"       = { versioning = false }
     "web-produccion"  = { versioning = false }
   }

@@ -78,19 +78,21 @@ resource "aws_s3_bucket_policy" "website_policy" {
       }
     ]
   })
+  # Espera a que el bucket s3 esté creado antes de aplicar la política
+  depends_on = [aws_s3_bucket.buckets]
 }
 
 # Localización archivos index.html y error.html
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.buckets["web-produccion"].id
   key    = "index.html"
-  source = "${path.root}/../index.html" # 🔹 Asegúrate de tener este archivo en la misma carpeta de Terraform o colocar la ubicacion correcta
+  source = "${path.root}/web/index.html" # 🔹 Asegúrate de tener este archivo en la misma carpeta de Terraform o colocar la ubicacion correcta
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket = aws_s3_bucket.buckets["web-produccion"].id
   key    = "error.html"
-  source = "${path.root}/../error.html" # 🔹 Asegúrate de tener este archivo en la misma carpeta de Terraform o colocar la ubicacion correcta
+  source = "${path.root}/web/error.html" # 🔹 Asegúrate de tener este archivo en la misma carpeta de Terraform o colocar la ubicacion correcta
   content_type = "text/html"
 }
